@@ -4,28 +4,151 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WildCare | Responder dashboard</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" />
     <link rel="stylesheet" href="interactions.css" />
+    <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
-    <div class="dashboard">
+  <body class="auth-loading">
+    <section class="auth-screen" id="auth-screen" aria-labelledby="auth-title" hidden>
+      <div class="auth-brand">
+        <a class="auth-logo" href="#"><i class="fa-solid fa-paw" aria-hidden="true"></i> WildCare</a>
+        <div class="auth-message">
+          <span class="auth-kicker">RESPONDER PORTAL</span>
+          <h1>Protect wildlife.<br />Coordinate every rescue.</h1>
+          <p>Secure access for verified WildCare response teams.</p>
+        </div>
+      </div>
+      <div class="auth-panel">
+        <form class="login-card" id="login-form">
+          <div class="login-heading">
+            <span class="login-icon"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></span>
+            <div><p class="eyebrow">WELCOME BACK</p><h2 id="auth-title">Sign in to your workspace</h2></div>
+          </div>
+          <p class="login-intro">Use your responder account to continue.</p>
+          <label for="login-email">Email address</label>
+          <div class="auth-input"><i class="fa-regular fa-envelope" aria-hidden="true"></i><input id="login-email" type="email" autocomplete="email" placeholder="you@wildcare.org" required /></div>
+          <div class="password-label"><label for="login-password">Password</label></div>
+          <div class="auth-input"><i class="fa-solid fa-lock" aria-hidden="true"></i><input id="login-password" type="password" autocomplete="current-password" placeholder="Enter your password" minlength="8" required /><button id="password-toggle" type="button" aria-label="Show password"><i class="fa-regular fa-eye" aria-hidden="true"></i></button></div>
+          <label class="remember"><input id="remember-me" type="checkbox" checked /> Keep me signed in</label>
+          <p class="auth-error" id="auth-error" role="alert" hidden></p>
+          <button class="sign-in-button" id="sign-in-button" type="submit"><span>Sign in</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+          <p class="auth-switch-copy">New to WildCare? <button id="show-register" type="button">Create an account</button></p>
+          <p class="auth-note"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Your session is securely managed by WildCare.</p>
+        </form>
+        <form class="login-card" id="register-form" hidden>
+          <div class="login-heading">
+            <span class="login-icon"><i class="fa-solid fa-user-plus" aria-hidden="true"></i></span>
+            <div><p class="eyebrow">GET STARTED</p><h2>Create your account</h2></div>
+          </div>
+          <p class="login-intro">Create a responder profile to access the workspace.</p>
+          <label for="register-name">Full name</label>
+          <div class="auth-input"><i class="fa-regular fa-user" aria-hidden="true"></i><input id="register-name" autocomplete="name" placeholder="Your full name" required /></div>
+          <div class="password-label"><label for="register-email">Email address</label></div>
+          <div class="auth-input"><i class="fa-regular fa-envelope" aria-hidden="true"></i><input id="register-email" type="email" autocomplete="email" placeholder="you@wildcare.org" required /></div>
+          <div class="password-label"><label for="register-password">Password</label></div>
+          <div class="auth-input"><i class="fa-solid fa-lock" aria-hidden="true"></i><input id="register-password" type="password" autocomplete="new-password" placeholder="Minimum 8 characters" minlength="8" required /></div>
+          <p class="auth-error" id="register-error" role="alert" hidden></p>
+          <button class="sign-in-button" id="register-button" type="submit"><span>Create account</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+          <p class="auth-switch-copy">Already registered? <button id="show-login" type="button">Sign in</button></p>
+        </form>
+      </div>
+    </section>
       <aside class="sidebar">
-        <a class="logo" href="#"><span>♣</span> WildCare <small>Responder Portal</small></a>
-        <nav><a class="active" data-view="dashboard" href="#dashboard">⌂ <span>Dashboard</span></a><a data-view="assigned" href="#assigned">▣ <span>Assigned Reports</span><b>3</b></a><a data-view="all" href="#all">▤ <span>All Reports</span></a><a data-view="messages" href="#messages">◉ <span>Messages</span></a><a data-view="coverage" href="#coverage">⌖ <span>Coverage Area</span></a><a data-view="resources" href="#resources">✦ <span>Resources</span></a></nav>
-        <a class="help" href="#">◖ <span>Need Help?<small>Contact Support</small></span></a>
+        <a class="logo" href="#"
+          ><i class="fa-solid fa-paw" aria-hidden="true"></i> WildCare <small>Responder Portal</small></a
+        >
+        <nav>
+          <a class="active" data-view="dashboard" href="#dashboard"
+            ><i class="fa-solid fa-house" aria-hidden="true"></i> <span>Dashboard</span></a
+          ><a data-view="assigned" href="#assigned"
+            ><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i> <span>Assigned Reports</span><b id="sidebar-assigned-count">0</b></a
+          ><a data-view="all" href="#all"><i class="fa-solid fa-list-check" aria-hidden="true"></i> <span>All Reports</span></a
+          ><a data-view="messages" href="#messages"><i class="fa-solid fa-message" aria-hidden="true"></i> <span>Messages</span></a
+          ><a data-view="coverage" href="#coverage"
+            ><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i> <span>Coverage Area</span></a
+          ><a data-view="resources" href="#resources"
+            ><i class="fa-solid fa-book-open" aria-hidden="true"></i> <span>Resources</span></a
+          >
+        </nav>
       </aside>
       <main class="content">
-        <header><label class="search" for="report-search">⌕ <input id="report-search" type="search" placeholder="Search report ID, animal, location..." aria-label="Search reports" /></label><div class="header-actions"><button class="header-icon" id="notifications-button" type="button" aria-label="Notifications">🔔</button><button class="profile-button" id="profile-button" type="button" aria-label="Open profile menu"><span class="avatar">WS</span><span class="profile-copy"><b>Wildlife SOS</b><small>Responder</small></span><span aria-hidden="true">⌄</span></button></div></header>
-        <section class="hero"><div><p class="eyebrow">WILDLIFE SOS · NEW DELHI</p><h1>Every rescue<br />makes a difference.</h1><p>Respond. Protect. Preserve.</p></div><div class="hero-animal">🐆</div></section>
-        <section class="stats"><article><span class="stat-icon green">♣</span><div><b id="assigned-count">3</b><small>Assigned to me</small></div></article><article><span class="stat-icon amber">◷</span><div><b id="progress-count">5</b><small>In Progress</small></div></article><article><span class="stat-icon mint">✓</span><div><b id="resolved-count">12</b><small>Resolved</small></div></article><article><span class="stat-icon purple">▣</span><div><b id="total-count">28</b><small>Total Reports</small></div></article></section>
-        <section class="reports"><div class="section-title"><div><h2>Assigned to Me <span id="list-count">3</span></h2><p id="report-subtitle">Prioritised wildlife reports requiring attention.</p></div><button id="filter-button" type="button">⚙ Filter</button></div>
-          <div class="filter-menu" id="filter-menu" hidden><button type="button" data-filter="assigned">Assigned to me</button><button type="button" data-filter="all">All active reports</button></div>
+        <header>
+          <label class="search" for="report-search"
+            ><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            <input
+              id="report-search"
+              type="search"
+              placeholder="Search report ID, animal, location..."
+              aria-label="Search reports"
+          /></label>
+          <div class="header-actions">
+            <button
+              class="profile-button"
+              id="profile-button"
+              type="button"
+              aria-label="Open profile menu"
+            >
+              <span class="avatar">WS</span
+              ><span class="profile-copy"
+                ><b>Wildlife SOS</b><small>Responder</small></span
+              ><i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div class="profile-menu" id="profile-menu" hidden>
+              <div><b id="menu-user-name">Responder</b><small id="menu-user-email"></small></div>
+              <button id="sign-out-button" type="button"><i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i> Sign out</button>
+            </div>
+          </div>
+        </header>
+        <section class="hero">
+          <div>
+            <p class="eyebrow">WILDLIFE SOS · NEW DELHI</p>
+            <h1>Every rescue<br />makes a difference.</h1>
+            <p>Respond. Protect. Preserve.</p>
+          </div>
+          <div class="hero-animal"><i class="fa-solid fa-shield-dog" aria-hidden="true"></i></div>
+        </section>
+        <section class="stats">
+          <article>
+            <span class="stat-icon green"><i class="fa-solid fa-user-check" aria-hidden="true"></i></span>
+            <div><b id="assigned-count">0</b><small>Assigned to me</small></div>
+          </article>
+          <article>
+            <span class="stat-icon amber"><i class="fa-regular fa-clock" aria-hidden="true"></i></span>
+            <div><b id="progress-count">0</b><small>In Progress</small></div>
+          </article>
+          <article>
+            <span class="stat-icon mint"><i class="fa-solid fa-check" aria-hidden="true"></i></span>
+            <div><b id="resolved-count">0</b><small>Resolved</small></div>
+          </article>
+          <article>
+            <span class="stat-icon purple"><i class="fa-solid fa-file-lines" aria-hidden="true"></i></span>
+            <div><b id="total-count">0</b><small>Total Reports</small></div>
+          </article>
+        </section>
+        <section class="reports">
+          <div class="section-title">
+            <div>
+              <h2>Assigned to Me <span id="list-count">0</span></h2>
+              <p id="report-subtitle">
+                Prioritised wildlife reports requiring attention.
+              </p>
+            </div>
+            <button id="filter-button" type="button"><i class="fa-solid fa-sliders" aria-hidden="true"></i> Filter</button>
+          </div>
+          <div class="filter-menu" id="filter-menu" hidden>
+            <button type="button" data-filter="assigned">Assigned to me</button
+            ><button type="button" data-filter="all">All active reports</button>
+          </div>
           <div id="report-list"></div>
         </section>
       </main>
-    </div>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
-    <dialog id="report-dialog"><button class="dialog-close" type="button" aria-label="Close">×</button><p class="eyebrow">REPORT DETAILS</p><h2 id="dialog-title"></h2><p id="dialog-details"></p></dialog>
+    <dialog id="report-dialog">
+      <button class="dialog-close" type="button" aria-label="Close">×</button>
+      <p class="eyebrow">REPORT DETAILS</p>
+      <h2 id="dialog-title"></h2>
+      <p id="dialog-details"></p>
+    </dialog>
     <script src="app.js"></script>
   </body>
 </html>
