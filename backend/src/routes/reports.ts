@@ -31,6 +31,9 @@ reportsApp.post("/", async (c) => {
 
 // GET /reports — dashboard pe list dikhegi
 reportsApp.get("/", async (c) => {
+  const session = await auth.api.getSession({ headers: c.req.raw.headers });
+  if (!session) return c.json({ error: { message: "Login karo pehle" } }, 401);
+
   const rows = await db.select().from(report).orderBy(desc(report.createdAt)).limit(100);
   return c.json({ data: rows });
 });

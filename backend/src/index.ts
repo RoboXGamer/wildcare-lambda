@@ -14,12 +14,15 @@ const app = new Hono();
 // taaki redeploy ke bina naye frontend jod sako.
 const FRONTEND_URLS = (process.env.FRONTEND_URL || "")
   .split(",")
-  .map((s) => s.trim())
+  .map((s) => s.trim().replace(/\/+$/, ""))
   .filter(Boolean);
 const origins = [
   "http://localhost:5000",
   "http://localhost:5500",
   "http://127.0.0.1:5500",
+  "http://localhost",
+  "https://localhost",
+  "capacitor://localhost",
   ...FRONTEND_URLS,
 ];
 app.use(
@@ -27,6 +30,9 @@ app.use(
   cors({
     origin: origins,
     credentials: true,
+    allowHeaders: ["Content-Type"],
+    allowMethods: ["GET", "POST", "PATCH", "OPTIONS"],
+    maxAge: 86400,
   })
 );
 
