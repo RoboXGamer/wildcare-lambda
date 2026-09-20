@@ -1,0 +1,41 @@
+.toast { position:fixed; z-index:5; bottom:24px; left:50%; width:min(390px,calc(100% - 32px)); transform:translate(-50%,20px); opacity:0; pointer-events:none; padding:12px 16px; border-radius:8px; color:#fff; background:#123b2c; box-shadow:0 10px 28px #0a2b1f45; font-weight:650; font-size:13px; transition:.25s ease; }
+.toast.visible { opacity:1; transform:translate(-50%,0); }
+.captured { color:#086440; background:#edf8ef; border-color:#8ec9a1; }
+@media (max-width:650px) { .phone { display:block; } .welcome-screen { display:block; min-height:100vh; } .report-screen { display:none; min-height:100vh; } .phone.show-report .welcome-screen { display:none; } .phone.show-report .report-screen { display:flex; } }
+
+/* Screen-state rules are kept here so the citizen journey has one active view
+   at every viewport width, rather than rendering the welcome and form together. */
+.phone { width:min(100%,430px); display:block; }
+.report-screen,
+.assessment-screen { display:none; min-height:680px; padding:20px 34px; flex-direction:column; }
+.phone.show-report .welcome-screen,
+.phone.show-assessment .welcome-screen,
+.phone.show-review .welcome-screen,
+.phone.show-success .welcome-screen { display:none; }
+.phone.show-report .report-screen,
+.phone.show-assessment .assessment-screen { display:flex; }
+.phone.show-review .review-screen,.phone.show-success .success-screen{display:flex}
+.assessment-screen .progress i { width:68%; }
+.review-screen .progress i{width:84%}.flow-screen{display:none;min-height:680px;padding:20px 34px;flex-direction:column}.success-screen{justify-content:center;text-align:center;align-items:center}.success-mark{width:76px;height:76px;border-radius:50%;display:grid;place-items:center;background:#e4f5e9;color:var(--forest);font-size:38px;font-weight:800;margin-bottom:20px}.success-screen .button{width:100%;margin-top:15px}
+.assessment-card,
+.safety-card { border:1px solid var(--line); border-radius:12px; background:#fff; }
+.assessment-card { display:grid; overflow:hidden; margin:8px 0 14px; }
+.assessment-card div { display:grid; gap:3px; padding:14px; border-bottom:1px solid var(--line); }
+.assessment-card div:last-child { border-bottom:0; }
+.assessment-card span { color:var(--muted); font-size:11px; }
+.assessment-card strong { font-size:14px; }
+.urgency { color:#b83b43; }
+.safety-card { padding:15px; background:#edf7f0; border-color:#cde6d4; }
+.safety-card b { color:var(--forest); }
+.safety-card p { margin:5px 0 0; color:#3d5d4c; font-size:12px; }
+.use-location { cursor:pointer; }
+.use-location:disabled { cursor:wait; opacity:.7; }
+.photo-upload{min-height:58px;border:1px dashed #8eb7a0;border-radius:8px;background:#f4faf6;color:var(--forest);display:grid;grid-template-columns:auto 1fr;align-items:center;column-gap:8px;padding:9px 12px;cursor:pointer}.photo-upload:first-letter{font-size:22px}.photo-upload small{grid-column:2;font-size:10px}.photo-preview{width:100%;max-height:120px;object-fit:cover;border-radius:8px;margin-top:8px;border:1px solid var(--line)}
+.analyse-photo{width:100%;margin-top:8px;border:0;border-radius:7px;background:var(--forest);color:#fff;padding:10px;font-weight:700;cursor:pointer}.analyse-photo:disabled{opacity:.45;cursor:not-allowed}.ai-photo-result{margin-top:8px;padding:11px 12px;border:1px solid #cbe4d3;border-radius:8px;background:#edf8f0;color:#315643;font-size:11px}.ai-photo-result b{display:block;color:var(--forest);margin-bottom:3px}
+.auth-dialog{width:min(390px,calc(100% - 28px));border:0;border-radius:16px;padding:24px;color:var(--ink);box-shadow:0 24px 70px #102b1d55}.auth-dialog::backdrop{background:#0d281e88}.auth-dialog h2{margin:3px 0 17px;font-size:22px}.auth-dialog form{display:grid;gap:11px}.auth-dialog label{display:grid;gap:5px}.auth-dialog input{border:1px solid var(--line);border-radius:7px;padding:11px;font:inherit}.auth-switch{display:block;margin:13px auto 0;border:0;background:none;color:var(--forest);font-weight:700;cursor:pointer}
+
+@media (max-width:650px) {
+  .report-screen,
+  .assessment-screen,.flow-screen { min-height:100vh; padding:20px 24px; }
+  .phone.show-assessment .assessment-screen { display:flex; }
+}

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WildCare | Report wildlife emergencies</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="interactions.css" />
+  </head>
+  <body>
+    <main class="phone" aria-label="WildCare citizen app preview">
+      <section class="welcome-screen">
+        <div class="topbar"><span>9:41</span><span>●●● ▰</span></div>
+        <div class="brand-mark" aria-hidden="true">♣</div>
+        <p class="brand">WildCare</p>
+        <div class="deer" aria-hidden="true">🦌</div>
+        <div class="welcome-copy">
+          <p>Report Wildlife Emergencies</p>
+          <p>Connect with Rescuers</p>
+          <p>Protect Our Wildlife</p>
+        </div>
+        <div class="welcome-actions">
+          <button class="button button-outline" id="get-started">Get Started <span>→</span></button>
+          <button class="button button-ghost" id="have-account">I Already Have an Account</button>
+        </div>
+        <p class="tagline">“A safer tomorrow<br />for every wild life.”</p>
+      </section>
+
+      <section class="report-screen" aria-label="New incident form">
+        <header class="screen-header">
+          <button class="icon-button" id="header-back" type="button" aria-label="Go back">←</button>
+          <div class="step"><span>Step <b id="step-number">1</b> of 6</span><div class="progress"><i id="progress-bar"></i></div></div>
+          <span class="spacer"></span>
+        </header>
+        <div class="form-step" data-step="1"><p class="eyebrow">NEW WILDLIFE REPORT</p><h1>What happened?</h1><p class="muted">Choose the incident that best describes what you see.</p><label for="incident-type">Incident type</label><select id="incident-type"><option value="Animal needs help">Animal needs help</option><option value="Animal is trapped">Animal is trapped</option><option value="Human-wildlife conflict">Human-wildlife conflict</option></select></div>
+        <div class="form-step" data-step="2" hidden><p class="eyebrow">REPORT DETAILS</p><h1>Tell us about the animal</h1><p class="muted">A short description or photo helps responders prepare. You can add more information later.</p><label for="incident-photo">Add a photo <small>(optional)</small></label><label class="photo-upload" for="incident-photo">📷 <span>Choose a photo</span><small>JPG, PNG, or HEIC</small></label><input id="incident-photo" type="file" accept="image/*" hidden /><img id="photo-preview" class="photo-preview" alt="Selected incident preview" hidden /><button id="analyse-photo" class="analyse-photo" type="button" disabled>✦ Analyse photo</button><div id="ai-photo-result" class="ai-photo-result" hidden aria-live="polite"></div><label for="description">Describe the incident <small>(optional)</small></label><textarea id="description" placeholder="Injured monkey near the roadside..."></textarea><label for="observation">What did you observe? <small>(optional)</small></label><select id="observation"><option>Select an option</option><option>Animal appears injured</option><option>Animal is trapped</option><option>Human-wildlife conflict</option></select></div>
+        <div class="form-step" data-step="3" hidden><p class="eyebrow">LOCATION</p><h1>Share the location</h1><p class="muted">We’ll use your location to find the nearest responders.</p><div class="map-card">
+          <div class="roads road-one"></div><div class="roads road-two"></div><div class="roads road-three"></div>
+          <div class="location-pin">●</div>
+          <span class="map-label">Rajouri Garden, New Delhi</span>
+        </div>
+        <button class="use-location" id="use-location">⌖ &nbsp; Use Current Location</button></div>
+        <footer class="form-footer"><button class="button button-light" id="go-back" type="button">Back</button><button class="button button-primary" id="next-step" type="button">Next</button></footer>
+      </section>
+
+      <section class="assessment-screen" aria-label="AI-assisted assessment" aria-live="polite">
+        <header class="screen-header">
+          <button class="icon-button" id="assessment-back" type="button" aria-label="Edit report details">←</button>
+          <div class="step"><span>Step 4 of 6</span><div class="progress"><i></i></div></div>
+          <span class="spacer"></span>
+        </header>
+        <p class="eyebrow">AI-ASSISTED ASSESSMENT</p>
+        <h1>Review the assessment</h1>
+        <p class="muted">This guidance is advisory. Keep a safe distance and do not attempt a rescue.</p>
+        <div class="assessment-card">
+          <div><span>Possible condition</span><strong id="assessment-condition">Possible injury</strong></div>
+          <div><span>Urgency</span><strong class="urgency">High</strong></div>
+          <div><span>Location</span><strong id="assessment-location">Rajouri Garden, New Delhi</strong></div>
+        </div>
+        <div class="safety-card"><b>Safety advice</b><p>Stay clear of the animal, keep others away, and wait for trained responders.</p></div>
+        <footer class="form-footer"><button class="button button-light" id="edit-report" type="button">Edit</button><button class="button button-primary" id="continue-report" type="button">Continue</button></footer>
+      </section>
+      <section class="review-screen flow-screen" aria-label="Review report"><header class="screen-header"><button class="icon-button" id="review-back" type="button">←</button><div class="step"><span>Step 5 of 6</span><div class="progress"><i></i></div></div><span class="spacer"></span></header><p class="eyebrow">REVIEW REPORT</p><h1>Ready to send?</h1><p class="muted">Review the essentials before alerting nearby responders.</p><div class="assessment-card"><div><span>Incident</span><strong id="review-incident"></strong></div><div><span>Location</span><strong id="review-location"></strong></div></div><footer class="form-footer"><button class="button button-light" id="review-edit" type="button">Edit</button><button class="button button-primary" id="submit-report" type="button">Send report</button></footer></section>
+      <section class="success-screen flow-screen" aria-live="polite"><div class="success-mark">✓</div><p class="eyebrow">REPORT SENT · STEP 6 OF 6</p><h1>Help is being matched</h1><p class="muted">Your report is now visible to nearby responders. You can safely add more details later.</p><button class="button button-primary" id="new-report" type="button">Report another incident</button></section>
+    </main>
+    <dialog class="auth-dialog" id="auth-dialog"><button class="dialog-close" id="auth-close" type="button" aria-label="Close">×</button><div id="login-form"><p class="eyebrow">WELCOME BACK</p><h2>Sign in to WildCare</h2><form id="login-request"><label>Email<input id="login-email" type="email" required autocomplete="email" /></label><label>Password<input id="login-password" type="password" required autocomplete="current-password" /></label><button class="button button-primary" type="submit">Sign in</button></form><button class="auth-switch" id="show-register" type="button">Create an account</button></div><div id="register-form" hidden><p class="eyebrow">CREATE ACCOUNT</p><h2>Join WildCare</h2><form id="register-request"><label>Name<input id="register-name" required autocomplete="name" /></label><label>Email<input id="register-email" type="email" required autocomplete="email" /></label><label>Password<input id="register-password" type="password" minlength="8" required autocomplete="new-password" /></label><button class="button button-primary" type="submit">Create account</button></form><button class="auth-switch" id="show-login" type="button">I already have an account</button></div><div id="otp-form" hidden><p class="eyebrow">VERIFY EMAIL</p><h2>Enter the six-digit code</h2><form id="otp-request"><label>Verification code<input id="otp-code" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" required /></label><button class="button button-primary" type="submit">Verify email</button></form></div></dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>

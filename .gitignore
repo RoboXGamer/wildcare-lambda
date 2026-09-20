@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.drizzle/
+*.log
+.DS_Store
+# secrets — kabhi commit mat karo (Neon URL + AWS keys + auth secret)
+**/.env
+**/cookies*.txt
+**/fe*.txt

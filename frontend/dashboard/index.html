@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WildCare | Responder dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="interactions.css" />
+  </head>
+  <body>
+    <div class="dashboard">
+      <aside class="sidebar">
+        <a class="logo" href="#"><span>♣</span> WildCare <small>Responder Portal</small></a>
+        <nav><a class="active" data-view="dashboard" href="#dashboard">⌂ <span>Dashboard</span></a><a data-view="assigned" href="#assigned">▣ <span>Assigned Reports</span><b>3</b></a><a data-view="all" href="#all">▤ <span>All Reports</span></a><a data-view="messages" href="#messages">◉ <span>Messages</span></a><a data-view="coverage" href="#coverage">⌖ <span>Coverage Area</span></a><a data-view="resources" href="#resources">✦ <span>Resources</span></a></nav>
+        <a class="help" href="#">◖ <span>Need Help?<small>Contact Support</small></span></a>
+      </aside>
+      <main class="content">
+        <header><label class="search" for="report-search">⌕ <input id="report-search" type="search" placeholder="Search report ID, animal, location..." aria-label="Search reports" /></label><div class="header-actions"><button class="header-icon" id="notifications-button" type="button" aria-label="Notifications">🔔</button><button class="profile-button" id="profile-button" type="button" aria-label="Open profile menu"><span class="avatar">WS</span><span class="profile-copy"><b>Wildlife SOS</b><small>Responder</small></span><span aria-hidden="true">⌄</span></button></div></header>
+        <section class="hero"><div><p class="eyebrow">WILDLIFE SOS · NEW DELHI</p><h1>Every rescue<br />makes a difference.</h1><p>Respond. Protect. Preserve.</p></div><div class="hero-animal">🐆</div></section>
+        <section class="stats"><article><span class="stat-icon green">♣</span><div><b id="assigned-count">3</b><small>Assigned to me</small></div></article><article><span class="stat-icon amber">◷</span><div><b id="progress-count">5</b><small>In Progress</small></div></article><article><span class="stat-icon mint">✓</span><div><b id="resolved-count">12</b><small>Resolved</small></div></article><article><span class="stat-icon purple">▣</span><div><b id="total-count">28</b><small>Total Reports</small></div></article></section>
+        <section class="reports"><div class="section-title"><div><h2>Assigned to Me <span id="list-count">3</span></h2><p id="report-subtitle">Prioritised wildlife reports requiring attention.</p></div><button id="filter-button" type="button">⚙ Filter</button></div>
+          <div class="filter-menu" id="filter-menu" hidden><button type="button" data-filter="assigned">Assigned to me</button><button type="button" data-filter="all">All active reports</button></div>
+          <div id="report-list"></div>
+        </section>
+      </main>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <dialog id="report-dialog"><button class="dialog-close" type="button" aria-label="Close">×</button><p class="eyebrow">REPORT DETAILS</p><h2 id="dialog-title"></h2><p id="dialog-details"></p></dialog>
+    <script src="app.js"></script>
+  </body>
+</html>
