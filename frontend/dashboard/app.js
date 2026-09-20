@@ -114,6 +114,7 @@ async function loadBackendReports() {
       id: item.id,
       title: item.incidentType || "Wildlife report",
       location: item.locationLabel || "Location not shared",
+      photoUrl: item.photoUrl || "",
       time: new Date(item.createdAt || Date.now()).toLocaleString([], {
         dateStyle: "medium",
         timeStyle: "short",
@@ -392,6 +393,13 @@ document.querySelector("#report-list").addEventListener("click", (event) => {
     document.querySelector("#dialog-title").textContent = report.title;
     document.querySelector("#dialog-details").textContent =
       `${report.status} · ${report.location} · Reported ${report.time}`;
+    const photo = document.querySelector("#dialog-photo");
+    const photoWrap = document.querySelector("#dialog-photo-wrap");
+    const noPhoto = document.querySelector("#dialog-no-photo");
+    photoWrap.hidden = !report.photoUrl;
+    noPhoto.hidden = Boolean(report.photoUrl);
+    if (report.photoUrl) photo.src = report.photoUrl;
+    else photo.removeAttribute("src");
     document.querySelector("#report-dialog").showModal();
   }
   if (event.target.classList.contains("action")) updateReport(report.id);
