@@ -1,7 +1,7 @@
 const toast = document.querySelector('#toast');
 const storageKey = 'wildcare:reports';
 const channel = 'BroadcastChannel' in window ? new BroadcastChannel('wildcare:reports') : null;
-const apiBase = window.WILDCARE_API_URL || 'http://localhost:3000';
+const apiBase = window.WILDCARE_API_URL || 'https://hnhgrqhm2xjl2amch5o6i3ddqe0orsoe.lambda-url.ap-south-1.on.aws';
 let filter = 'assigned';
 let searchTerm = '';
 const seedReports = [
