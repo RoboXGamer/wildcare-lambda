@@ -7,3 +7,4 @@ dist/
 **/.env
 **/cookies*.txt
 **/fe*.txt
+*.zip
