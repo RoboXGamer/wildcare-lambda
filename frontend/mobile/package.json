@@ -1,0 +1,35 @@
+{
+  "name": "my-app-template",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Solid + Vite + Capacitor template for mobile apps",
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "cap:sync": "npx cap sync",
+    "cap:open:android": "npx cap open android",
+    "cap:open:ios": "npx cap open ios",
+    "build:android": "vite build && cap sync android && cap copy android && android/gradlew --project-dir android assembleDebug"
+  },
+  "dependencies": {
+    "@capacitor/camera": "latest",
+    "@capacitor/core": "latest",
+    "@capacitor/splash-screen": "latest",
+    "@solidjs/web": "2.0.0-rc.9",
+    "clsx": "^2.1.1",
+    "lucide-solid": "^1.47.0",
+    "solid-js": "2.0.0-rc.9",
+    "tailwind-merge": "^3.7.0"
+  },
+  "devDependencies": {
+    "@capacitor/android": "^8.5.2",
+    "@capacitor/cli": "latest",
+    "@tailwindcss/vite": "^4.3.3",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^6.0.3",
+    "vite": "^8.3.0",
+    "@solidjs/vite-plugin":"3.0.0-next.44"
+  }
+}

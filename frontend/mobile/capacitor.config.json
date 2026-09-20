@@ -1,0 +1,10 @@
+{
+  "appId": "com.creativeminds.myapp",
+  "appName": "MyApp",
+  "webDir": "dist",
+  "plugins": {
+    "SplashScreen": {
+      "launchAutoHide": true
+    }
+  }
+}
